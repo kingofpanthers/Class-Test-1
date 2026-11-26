@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load humanize %}
+{% block content %}
+<section class="hero">
+  <div class="hero-lines" aria-hidden="true"></div>
+  <div class="hero-copy">
+    <p class="eyebrow">Dealership inventory</p>
+    <h1>Vehicle inventory</h1>
+    <p>Browse the showroom and manage your listings.</p>
+  </div>
+</section>
+<div class="stats" aria-label="Inventory summary">
+  <div class="stat"><span>Total vehicles</span><strong>{{ summary.total }}</strong></div>
+  <div class="stat"><span><i aria-hidden="true"></i> Available for sale</span><strong>{{ summary.available }}</strong></div>
+  <div class="stat"><span>Electric vehicles</span><strong>{{ summary.electric }}</strong></div>
+</div>
+{% for message in messages %}<p class="notice" role="status">{{ message }}</p>{% endfor %}
+<section class="listing" aria-labelledby="list-heading">
+  <div class="list-heading">
+    <div><h2 id="list-heading">{% if status == 'all' %}All cars{% else %}Available cars{% endif %}</h2><p>{{ cars|length }} vehicle{{ cars|length|pluralize }}</p></div>
+    <form class="search" method="get" action="{% url 'home' %}">
+      <input type="hidden" name="status" value="{{ status }}">
+      <input type="search" name="q" value="{{ query }}" aria-label="Search inventory" placeholder="Search model, brand, or fuel">
+      <button class="button secondary" type="submit">Search</button>
+    </form>
+  </div>
+  <nav class="filters" aria-label="Availability filter">
+    <a href="{% url 'home' %}?status=available&amp;q={{ query|urlencode }}" {% if status == 'available' %}aria-current="true"{% endif %}>Available only</a>
+    <a href="{% url 'home' %}?status=all&amp;q={{ query|urlencode }}" {% if status == 'all' %}aria-current="true"{% endif %}>All vehicles</a>
+  </nav>
+  <div class="cards">
+    {% for car in cars %}
+      <article class="card">
+        <div class="card-top">
+          <span class="brand">{{ car.brand }}</span>
+          {% if car.is_available %}<span class="status available"><i aria-hidden="true"></i> Available</span>{% else %}<span class="status">Unavailable</span>{% endif %}
+        </div>
+        <h3>{{ car.name }}</h3>
+        <p class="specs"><span>{{ car.year }}</span><span>{{ car.get_fuel_type_display }}</span></p>
+        <p class="description">{{ car.description }}</p>
+        <div class="price"><span>Asking price</span><strong>${{ car.price|floatformat:2|intcomma }}</strong></div>
+      </article>
+    {% empty %}
+      <div class="empty">
+        {% if query %}<h3>No matching cars</h3><a href="{% url 'home' %}?status={{ status }}">Clear search</a>
+        {% else %}<h3>{% if status == 'all' %}No cars in inventory{% else %}No cars available{% endif %}</h3><a href="{% url 'add_car' %}">Add a car</a>{% endif %}
+      </div>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

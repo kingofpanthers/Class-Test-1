@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Add a car{% endblock %}
+{% block content %}
+<div class="form-page">
+  <a class="back" href="{% url 'home' %}">Back to inventory</a>
+  <h1>Add a car</h1>
+  <p class="intro">Enter the vehicle details to create a new listing.</p>
+  <form method="post" class="form-panel">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+    <div class="form-grid">
+      {% for field in form %}
+        <div class="field {% if field.name == 'description' or field.name == 'is_available' %}wide{% endif %}">
+          {% if field.name == 'is_available' %}
+            <label class="checkbox">{{ field }} {{ field.label }}</label>
+          {% else %}
+            {{ field.label_tag }}
+            {{ field }}
+          {% endif %}
+          {{ field.errors }}
+        </div>
+      {% endfor %}
+    </div>
+    <div class="form-actions">
+      <a class="button secondary" href="{% url 'home' %}">Cancel</a>
+      <button class="button primary" type="submit">Save car</button>
+    </div>
+  </form>
+</div>
+{% endblock %}

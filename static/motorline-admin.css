@@ -1,0 +1,191 @@
+:root {
+  color-scheme: dark;
+  --primary: #243c65;
+  --secondary: #192941;
+  --accent: #f4f8ff;
+  --header-bg: #142239;
+  --header-color: #f4f8ff;
+  --header-branding-color: #f4f8ff;
+  --breadcrumbs-bg: #1b2d48;
+  --breadcrumbs-fg: #d4e0f5;
+  --breadcrumbs-link-fg: #bcd2fc;
+  --body-bg: #101622;
+  --body-fg: #e0e8f6;
+  --body-loud-color: #f4f8ff;
+  --body-medium-color: #d4dff2;
+  --body-quiet-color: #aebdd6;
+  --hairline-color: #2f3e56;
+  --border-color: #50627f;
+  --darkened-bg: #192438;
+  --selected-bg: #1d2c45;
+  --selected-row: #263d62;
+  --link-fg: #a8c7ff;
+  --link-hover-color: #d1e1ff;
+  --link-selected-fg: #c4d9ff;
+  --button-bg: #315cb3;
+  --button-hover-bg: #284e9a;
+  --default-button-bg: #315cb3;
+  --default-button-hover-bg: #284e9a;
+  --error-fg: #ffaaaa;
+  --message-success-bg: #163c31;
+  --message-warning-bg: #493414;
+  --message-error-bg: #522a34;
+  --close-button-bg: #334563;
+  --close-button-hover-bg: #405779;
+  --motorline-panel: #182235;
+}
+
+body {
+  font-family: "Segoe UI", system-ui, sans-serif;
+}
+#header {
+  min-height: 48px;
+}
+#site-name .admin-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: .75rem;
+  color: #f4f8ff;
+  font-weight: 750;
+  text-decoration: none;
+}
+.admin-mark {
+  display: grid;
+  width: 2.25rem;
+  height: 2.25rem;
+  place-items: center;
+  border-radius: .55rem;
+  background: #a9c8ff;
+  color: #12264a;
+  font-size: 1rem;
+}
+.admin-brand small {
+  color: #bccef0;
+  font-size: .85em;
+  font-weight: 500;
+}
+#content > h1 {
+  color: var(--body-loud-color);
+  font-size: clamp(1.7rem, 3vw, 2.25rem);
+  font-weight: 750;
+  letter-spacing: -.04em;
+}
+#content-main .module,
+#content-related,
+#changelist-filter,
+#content-main .submit-row {
+  border: 1px solid var(--hairline-color);
+  border-radius: .75rem;
+  background: var(--motorline-panel, var(--body-bg));
+}
+#content-main .module {
+  overflow: hidden;
+}
+#content-main .module caption,
+#content-main .module h2 {
+  padding-block: .7rem;
+}
+#content-main .module th,
+#content-main .module td {
+  padding-block: .7rem;
+}
+#changelist .results {
+  overflow-x: auto;
+}
+#changelist #toolbar,
+#changelist .paginator {
+  background: var(--darkened-bg);
+}
+#changelist-filter h2 {
+  border-radius: .65rem .65rem 0 0;
+}
+#content input[type="submit"],
+#content .object-tools a {
+  border-radius: .45rem;
+}
+#content a:focus-visible,
+#content button:focus-visible,
+#content input:focus-visible,
+#content select:focus-visible,
+#header a:focus-visible {
+  outline: 2px solid #7098ef;
+  outline-offset: 2px;
+}
+body.login #container {
+  width: min(29rem, calc(100% - 2rem));
+  margin-top: clamp(2rem, 10vh, 7rem);
+  border-radius: 1rem;
+  border-color: var(--hairline-color);
+  background: var(--motorline-panel, var(--body-bg));
+  box-shadow: 0 12px 40px #101f3824;
+}
+body.login #header {
+  justify-content: center;
+}
+body.login #content {
+  padding: 1.75rem;
+}
+body.login #content-main .submit-row {
+  padding-left: 0;
+  border: 0;
+  background: transparent;
+}
+body.login .submit-row input {
+  width: 100%;
+}
+
+body:not(.login) > #container {
+  width: min(100% - 2rem, 75rem);
+  min-width: 0;
+  margin-inline: auto;
+}
+
+body:not(.login) #main > .content {
+  min-width: 0;
+}
+
+body:not(.login) #content {
+  box-sizing: border-box;
+  width: 100%;
+  margin-inline: auto;
+  padding: clamp(1rem, 3vw, 2rem);
+}
+
+body.dashboard #content,
+body.change-form #content {
+  max-width: 56rem;
+}
+
+body.dashboard #content-main,
+body.dashboard #content-related {
+  float: none;
+  width: 100%;
+}
+
+body.dashboard #content-related {
+  box-sizing: border-box;
+  margin: 1.25rem 0 0;
+}
+
+body:not(.login) #header {
+  justify-content: center;
+}
+
+body:not(.login) #branding {
+  display: none;
+}
+
+#header #user-tools {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: .25rem;
+  margin: 0;
+  font-size: .9rem;
+  text-transform: none;
+}
+
+#header #logout-form {
+  margin-inline-start: .75rem;
+}

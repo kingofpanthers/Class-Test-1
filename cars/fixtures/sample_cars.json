@@ -1,0 +1,5 @@
+[
+  {"model":"cars.car","pk":1,"fields":{"name":"Civic","brand":"Honda","year":2020,"price":"18900.00","description":"A comfortable sedan with a spacious interior and responsive handling.","is_available":true,"fuel_type":"Petrol"}},
+  {"model":"cars.car","pk":2,"fields":{"name":"Leaf","brand":"Nissan","year":2022,"price":"21500.00","description":"A quiet electric hatchback with regenerative braking and easy city driving.","is_available":true,"fuel_type":"Electric"}},
+  {"model":"cars.car","pk":3,"fields":{"name":"Corolla","brand":"Toyota","year":2021,"price":"22750.00","description":"An efficient hybrid sedan with a smooth ride and plenty of room for daily use.","is_available":true,"fuel_type":"Hybrid"}}
+]

@@ -1,0 +1,24 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Inventory{% endblock %} | Motorline</title>
+  <link rel="stylesheet" href="{% static 'motorline.css' %}">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <a class="logo" href="{% url 'home' %}"><span class="mark" aria-hidden="true">M</span> Motorline</a>
+      <nav aria-label="Main navigation">
+        <a href="{% url 'home' %}" {% if request.resolver_match.url_name == 'home' %}aria-current="page"{% endif %}>Inventory</a>
+        <a href="{% url 'admin:index' %}">Admin</a>
+      </nav>
+      <a class="button primary top-action" href="{% url 'add_car' %}"><span aria-hidden="true">+</span> Add car</a>
+    </div>
+  </header>
+  <main class="wrap" id="main">{% block content %}{% endblock %}</main>
+</body>
+</html>
